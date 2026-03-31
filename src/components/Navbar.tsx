@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
-  { label: "À propos", href: "#apropos" },
-  { label: "Articles", href: "#articles" },
+  { label: "À Propos", href: "#apropos" },
+  { label: "Services", href: "#services" },
   { label: "Horaires", href: "#horaires" },
   { label: "Contact", href: "#contact" },
 ];
@@ -37,35 +36,31 @@ const Navbar = () => {
           scrolled ? "glass-strong py-3" : "py-5"
         }`}
       >
-        <div className="container mx-auto flex items-center justify-between px-6">
-          <a href="#accueil" className="flex items-center gap-3">
-            <img src={logo} alt="Indiana Shop" className="h-10 w-10 object-contain" />
-            <span className="font-display text-2xl tracking-wider text-foreground">
-              INDIANA<span className="text-nardo">SHOP</span>
-            </span>
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-8">
+          <a href="#accueil" className="font-display text-2xl tracking-wider text-foreground">
+            INDIANA SHOP
           </a>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide uppercase"
+                className="text-sm font-normal text-secondary-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </button>
             ))}
-            <a
-              href="tel:0594318250"
-              className="flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              05 94 31 82 50
-            </a>
           </div>
 
-          {/* Mobile burger */}
+          <a
+            href="tel:0594318250"
+            className="hidden md:flex items-center gap-2 text-sm text-secondary-foreground hover:text-foreground transition-colors"
+          >
+            <Phone className="w-4 h-4" />
+            05 94 31 82 50
+          </a>
+
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-foreground p-2"
@@ -76,7 +71,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -93,13 +87,13 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => handleClick(link.href)}
-                className="font-display text-4xl tracking-widest text-foreground hover:text-nardo transition-colors"
+                className="font-display text-4xl tracking-widest text-foreground hover:text-gold transition-colors"
               >
                 {link.label}
               </motion.button>
             ))}
             <div className="flex flex-col items-center gap-3 mt-4">
-              <a href="tel:0594318250" className="flex items-center gap-2 text-accent">
+              <a href="tel:0594318250" className="flex items-center gap-2 text-gold">
                 <Phone className="w-5 h-5" /> 05 94 31 82 50
               </a>
               <a href="mailto:indianashop@orange.fr" className="flex items-center gap-2 text-muted-foreground">

@@ -1,37 +1,58 @@
 import { motion } from "framer-motion";
 import { MapPin, ChevronDown } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-banner.jpg";
 
 const HeroSection = () => {
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section id="accueil" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
+    <section id="accueil" className="relative min-h-screen flex items-end overflow-hidden">
+      {/* Background image */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Équipement de pêche et chasse" width={1920} height={1080} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-background/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        <img src={heroBg} alt="Expédition Guyane" width={1920} height={1080} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl">
+      {/* Content - left aligned like reference */}
+      <div className="relative z-10 max-w-[1400px] mx-auto w-full px-8 pb-32 pt-40">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
+          className="max-w-xl"
         >
-          <p className="text-nardo uppercase tracking-[0.3em] text-sm md:text-base mb-4 font-medium">
-            Pêche • Chasse • Camping
-          </p>
-          <h1 className="font-display text-7xl md:text-9xl lg:text-[10rem] leading-none tracking-wider mb-6">
+          {/* Location badge */}
+          <div className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 mb-8">
+            <MapPin className="w-4 h-4 text-gold" />
+            <span className="text-sm text-secondary-foreground">Cayenne, Guyane Française</span>
+          </div>
+
+          <h1 className="font-display text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-wider mb-6">
             INDIANA<br />
-            <span className="text-gradient">SHOP</span>
+            <span className="text-gold">SHOP</span>
           </h1>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto mb-8 font-light">
-            Votre spécialiste depuis 20 ans au cœur de Cayenne
+
+          <p className="text-muted-foreground text-lg max-w-md mb-10 leading-relaxed">
+            Votre spécialiste en articles de pêche, chasse et camping depuis plus de 20 ans.
           </p>
-          <div className="flex items-center justify-center gap-2 text-nardo-dark">
-            <MapPin className="w-4 h-4" />
-            <span className="text-sm tracking-wide">8 rue Rouget de Lisle, 97300 Cayenne</span>
+
+          {/* CTA buttons */}
+          <div className="flex flex-wrap gap-4">
+            <button
+              onClick={() => scrollTo("#apropos")}
+              className="px-8 py-3 rounded-lg bg-gold text-primary-foreground font-medium text-sm hover:bg-gold-light transition-colors"
+            >
+              Découvrir
+            </button>
+            <button
+              onClick={() => scrollTo("#contact")}
+              className="px-8 py-3 rounded-lg border border-border text-foreground font-medium text-sm hover:bg-secondary transition-colors"
+            >
+              Nous Contacter
+            </button>
           </div>
         </motion.div>
       </div>
@@ -40,7 +61,7 @@ const HeroSection = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
       >
         <ChevronDown className="w-6 h-6 text-muted-foreground" />
       </motion.div>
